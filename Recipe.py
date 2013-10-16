@@ -44,7 +44,7 @@ class Recipe:
     tuple ingredients -- a tuple of Ingredients that are used in the Recipe
     """
     def getIngredients(self):
-        return self.Ingredients
+        return self.ingredients
 
 
     """
@@ -53,7 +53,7 @@ class Recipe:
     Returns:
     int size -- the lenght of the tuple of Ingredients
     """
-    def getIngredients(self):
+    def getSize(self):
         return self.size
 
 
