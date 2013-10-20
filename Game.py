@@ -9,12 +9,41 @@ This class controls the Recipe and Ingredients that are used in each Game.
 """
 class Game:
 
-    VAMPIRE = Recipe.Recipe("Vampire", (Ingredient.Ingredient("Bat's Blood", 5) 
+    VAMPIRE = Recipe.Recipe("vampire", (Ingredient.Ingredient("Bat's Blood", 5), 
                                         Ingredient.Ingredient("Wolf Spit", 6),
                                         Ingredient.Ingredient("Foxglove Juice", 7),
                                         Ingredient.Ingredient("Quicksilver", 8)))
 
+    WEREWOLF = Recipe.Recipe("werewolf", (Ingredient.Ingredient("Moon Cheese", 5),
+                                          Ingredient.Ingredient("Wolf Spit", 6),
+                                          Ingredient.Ingredient("Toad Venom", 7),
+                                          Ingredient.Ingredient("Bat's Blood", 8),
+                                          Ingredient.Ingredient("Hemlock Root", 9),
+                                          Ingredient.Ingredient("Silver Fur", 10)))
+
+    ZOMBIE = Recipe.Recipe("zombie", (Ingredient.Ingredient("Toad Venom", 5),
+                                      Ingredient.Ingredient("Monkey Sweat", 6),
+                                      Ingredient.Ingredient("Quicksilver", 7),
+                                      Ingredient.Ingredient("Hemlock Root", 8),
+                                      Ingredient.Ingredient("Wolf Spit", 9),
+                                      Ingredient.Ingredient("Bat's Blood", 10),
+                                      Ingredient.Ingredient("Foxglove Juice", 12),
+                                      Ingredient.Ingredient("Fresh Brains", 15)))
+
+    DRAGON = Recipe.Recipe("dragon", (Ingredient.Ingredient("Foxglove Juice", 5),
+                                      Ingredient.Ingredient("Quicksilver", 6),
+                                      Ingredient.Ingredient("Serpent Milk", 7),
+                                      Ingredient.Ingredient("Wolf Spit", 8),
+
+                                      Ingredient.Ingredient("Monkey Sweat", 9),
+                                      Ingredient.Ingredient("Lion Tears", 10),
+                                      Ingredient.Ingredient("Crocodile Scales", 12),
+                                      Ingredient.Ingredient("Bat's Blood", 15),
+                                      Ingredient.Ingredient("Gold Dust", 16),
+                                      Ingredient.Ingredient("Liquid Fire", 20)))
+
     """
+
     Initialize a Game object.
 
     Arguments:
