@@ -55,9 +55,6 @@ class Game:
         # stores the fractions selected by the user in the game
         self.selection = []
 
-        # stores the index of the next Ingredient to use
-        self.nextIndex = 0
-
 
     """
     Sets the Recipe that is going to be used by the Game.
@@ -67,6 +64,9 @@ class Game:
     """
     def setRecipe(self, recipe):
         self.recipe = recipe
+
+        # stores the index of the next Ingredient to use
+        self.nextIndex = 0
 
     """
     Returns the Recipe used by the Game.
