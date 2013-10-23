@@ -36,12 +36,14 @@ class FractionFrame(Frame):
         img = []
 
         for i in self.choices:
-            if i < 0.3:
+            if i <= 0.25:
                 this_fill = "low"
-            elif i > 0.6:
-                this_fill = "full"
-            else:
+            elif i <= 0.5:
+                this_fill = "half"
+            elif i <= 0.75:
                 this_fill = "partial"
+            else:
+                this_fill = "full"
             img.append(PhotoImage(file = "img/" + this_flask + this_fill + this_color + ".gif"))
 
 
