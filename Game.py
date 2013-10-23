@@ -9,11 +9,13 @@ This class controls the Recipe and Ingredients that are used in each Game.
 """
 class Game:
 
+    # Vampire Monster - 4 Fractions (Easy)
     VAMPIRE = Recipe.Recipe("vampire", (Ingredient.Ingredient("Bat's Blood", 5), 
                                         Ingredient.Ingredient("Wolf Spit", 6),
                                         Ingredient.Ingredient("Foxglove Juice", 7),
                                         Ingredient.Ingredient("Quicksilver", 8)))
 
+    # Werewolf Monster - 6 Fractions (Medium)
     WEREWOLF = Recipe.Recipe("werewolf", (Ingredient.Ingredient("Moon Cheese", 5),
                                           Ingredient.Ingredient("Wolf Spit", 6),
                                           Ingredient.Ingredient("Toad Venom", 7),
@@ -21,6 +23,7 @@ class Game:
                                           Ingredient.Ingredient("Hemlock Root", 9),
                                           Ingredient.Ingredient("Silver Fur", 10)))
 
+    # Zombie Monster - 8 Fractions (Hard)
     ZOMBIE = Recipe.Recipe("zombie", (Ingredient.Ingredient("Toad Venom", 5),
                                       Ingredient.Ingredient("Monkey Sweat", 6),
                                       Ingredient.Ingredient("Quicksilver", 7),
@@ -30,6 +33,7 @@ class Game:
                                       Ingredient.Ingredient("Foxglove Juice", 12),
                                       Ingredient.Ingredient("Fresh Brains", 15)))
 
+    # Dragon Monster - 10 Fractions (Challenge)
     DRAGON = Recipe.Recipe("dragon", (Ingredient.Ingredient("Foxglove Juice", 5),
                                       Ingredient.Ingredient("Quicksilver", 6),
                                       Ingredient.Ingredient("Serpent Milk", 7),
@@ -103,8 +107,7 @@ class Game:
     """
     def playNextIngredient(self, ingredient):
         if ingredient:
-            choices = ingredient.getChoices()
-            self.window.fractionFrame(self, ingredient, choices)
+            self.window.fractionFrame(self, ingredient)
 
 
     """
@@ -113,35 +116,3 @@ class Game:
     def playRecipe(self):
         ingredient = self.getNextIngredient()
         self.playNextIngredient(ingredient)
-
-
-    """
-    Sets the self.selection attribute to the user-selected list of fractions
-    and calls checkAnswer to see if user chose the correct combination.
-
-    Called only by the fractionFrame when Enter button has been pressed.
-
-    Arguments:
-    Ingredient ingredient -- the Ingredient object to check selection against
-    Fraction[] selection -- a list of Fraction objects that were selected by the user
-    """
-    def setSelection(self, ingredient, selection):
-        self.selection = selection
-        self.checkAnswer(ingredient)
-
-
-    """
-    Checks if the sum of the Fractions in self.selection is equal to the
-    Fraction in the Ingredient.
-
-    Arguments:
-    Ingredient ingredient -- the Ingredient object which was played
-    """
-    def checkAnswer(self, ingredient):
-        selection_sum = fractions.Fraction()
-        for x in self.selection:
-            selection_sum += x
-        if selection_sum == ingredient.getFraction():
-            self.window.correctMessage()
-        else:
-            self.window.incorrectMessage()
