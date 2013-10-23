@@ -215,6 +215,12 @@ class FractionFrame(Frame):
         background_label.image = background_image;
         background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
+        # display completion status of game at top
+        status = Label(self, text="STATUS: " +
+                       str(self.game.getCurrentIndex()) + " / " +
+                       str(self.game.getRecipe().getSize()))
+        status.place(x=900, y=10)
+
         # make the title at the top which gives the prompt fraction
         title = Label(self, text="What combination of flasks adds up to " +
                       str(self.ingredient.getFraction()) +

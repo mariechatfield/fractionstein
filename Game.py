@@ -81,6 +81,15 @@ class Game:
     def getRecipe(self):
         return self.recipe
 
+    """
+    Returns the index of the current Ingredient in the Recipe.
+
+    Returns:
+    int index -- the current Ingredient index
+    """
+    def getCurrentIndex(self):
+        return self.nextIndex
+
 
     """
     Returns the next Ingredient object in the Recipe; if all Ingredients
