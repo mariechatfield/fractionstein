@@ -4,9 +4,10 @@ import random
 
 class FractionFrame(Frame):
 
-    def __init__(self, parent, game, ingredient, choices):
+    def __init__(self, window, parent, game, ingredient, choices):
         Frame.__init__(self, parent)
 
+        self.window = window
         self.parent = parent
         self.game = game
         self.ingredient = ingredient
@@ -23,10 +24,10 @@ class FractionFrame(Frame):
         background_label.image = background_image;
         background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-        title = Label(self, text="Measure Out " +
+        title = Label(self, text="What combination of flasks adds up to " +
                       str(self.ingredient.getFraction()) +
-                      " Flask of " + self.ingredient.getName())
-        title.place(x=400, y=25)
+                      " flask of " + self.ingredient.getName() + "?")
+        title.place(relx=0.5, y=50, anchor=CENTER)
 
         self.var = [IntVar(), IntVar(), IntVar(), IntVar()]
 
@@ -72,7 +73,11 @@ class FractionFrame(Frame):
         enterButton = Button(self, text="Enter", command=self.enter)
         enterButton.place(x=150, y=600)
 
-        quitButton = Button(self, text="Quit", command=self.quit)
+        def backFunc():
+            self.destroy()
+            self.window.startFrame()
+
+        quitButton = Button(self, text="Back to Main Menu", command=backFunc)
         quitButton.place(x=700, y=600)
 
     def onClick(self):
@@ -218,25 +223,25 @@ class ChooseFrame(Frame):
         vampire = Radiobutton(self, image=vampire_image,
                               variable=var, value=0)
         vampire.image = vampire_image
-        vampire.place(x=50, y=150)
+        vampire.place(relx=.3, rely=.4, anchor=CENTER)
 
         werewolf_image = PhotoImage(file="img/werewolf_text.gif")
         werewolf = Radiobutton(self, image=werewolf_image,
                               variable=var, value=1)
         werewolf.image = werewolf_image
-        werewolf.place(x=650, y=150)
+        werewolf.place(relx=.7, rely=.4, anchor=CENTER)
 
         zombie_image = PhotoImage(file="img/zombie_text.gif")
         zombie = Radiobutton(self, image=zombie_image,
                               variable=var, value=2)
         zombie.image = zombie_image
-        zombie.place(x=50, y=300)
+        zombie.place(relx=.3, rely=.6, anchor=CENTER)
 
         dragon_image = PhotoImage(file="img/dragon_text.gif")
         dragon = Radiobutton(self, image=dragon_image,
                                variable=var, value=3)
         dragon.image = dragon_image
-        dragon.place(x=650, y=300)
+        dragon.place(relx=.7, rely=.6, anchor=CENTER)
 
         def enterFunc():
             if var.get() == 0:
@@ -253,10 +258,14 @@ class ChooseFrame(Frame):
             self.window.game.playRecipe()
 
         enterButton = Button(self, text="Enter", command=enterFunc)
-        enterButton.place(x=300, y=550)
+        enterButton.place(relx=.3, rely=.8, anchor=CENTER)
 
-        quitButton = Button(self, text="Quit", command=self.quit)
-        quitButton.place(x=700, y=550)
+        def backFunc():
+            self.destroy()
+            self.window.startFrame()
+
+        quitButton = Button(self, text="Back", command=backFunc)
+        quitButton.place(relx=.7, rely=.8, anchor=CENTER)
 
 class ExplodeFrame(Frame):
 
@@ -284,6 +293,7 @@ class MainWindow:
     def main (self):
         self.root = Tk()
         self.root.geometry("1000x700+150+0")
+        self.root.resizable(width=FALSE, height=FALSE)
         self.warning = True
 
     def main_loop (self):
@@ -302,7 +312,7 @@ class MainWindow:
         app = ChooseFrame(self, self.root)
 
     def fractionFrame (self, game, ingredient, choices):
-        self.fracFrame = FractionFrame(self.root, game, ingredient, choices)
+        self.fracFrame = FractionFrame(self, self.root, game, ingredient, choices)
         app = self.fracFrame
 
     def winFrame (self):
